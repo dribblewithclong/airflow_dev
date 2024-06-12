@@ -15,7 +15,7 @@ default_args = {
     "email_on_failure": True,
 }
 dag = DAG(
-    dag_id='MAYNHINCAIDEOjz2',
+    dag_id='MAYNHINCAIDEOJ2',
     description='test DAG',
     schedule_interval=None,
     max_active_runs=1,
