@@ -27,5 +27,5 @@ dag = DAG(
 with dag:
     @task
     def main():
-        print('hello')
+        print('hello cc')
     main()
