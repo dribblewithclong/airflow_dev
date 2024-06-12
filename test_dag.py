@@ -32,5 +32,9 @@ with dag:
     @task
     def main2():
         print('hello cc too')
+
+    @task
+    def main3():
+        print('hello cc too too')
     
-    main() >> main2() 
+    main() >> main2() >> main3()
