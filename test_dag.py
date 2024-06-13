@@ -57,8 +57,8 @@ with dag:
         """,
     )
 
-    @task.bash
-    def main3():
-        return "dbt debug"
+    # @task.bash
+    # def main3():
+    #     return "dbt debug"
     
     main() >> dbt_run_task
