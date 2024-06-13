@@ -31,7 +31,7 @@ with dag:
 
         result1 = subprocess.run(["echo $PWD"], shell=True, capture_output=True, text=True)
 
-        result2 = subprocess.run(["dbt debug"], shell=True, capture_output=True, text=True)
+        result2 = subprocess.run(["touch ~/.dbt/profiles.yml"], shell=True, capture_output=True, text=True)
 
         print(result1.stdout)
         print(result2.stdout)
