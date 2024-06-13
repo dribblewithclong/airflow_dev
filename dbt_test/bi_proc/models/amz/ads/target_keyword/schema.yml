@@ -1,0 +1,18 @@
+
+version: 2
+
+models:
+  - name: stage_union_all
+    description: "union all 3 bảng targeting của SP, SB, SD"
+    columns:
+      - name: cpc_usd
+        description: "null nếu clicks bằng 0"
+      - name: roas
+        description: "null nếu spend_usd bằng 0"
+      - name: acos
+        description: "null nếu sales14d bằng 0"
+      - name: ctr
+        description: "null nếu impressions bằng 0"
+
+  - name: stage_spb_tgt
+    description: "join với bảng profile bằng case when vì account seller không có account_id riêng"
