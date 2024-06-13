@@ -27,7 +27,14 @@ dag = DAG(
 with dag:
     @task
     def main():
-        print('hello cc')
+        import subprocess
+
+        result1 = subprocess.run(["echo $PWD"], shell=True, capture_output=True, text=True)
+
+        result2 = subprocess.run(["dbt debug"], shell=True, capture_output=True, text=True)
+
+        print(result1.stdout)
+        print(result2.stdout)
 
     @task
     def main2():
