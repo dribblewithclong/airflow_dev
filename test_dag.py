@@ -38,7 +38,7 @@ with dag:
 
     @task.bash
     def main2():
-        return "cd /opt/airflow && echo $PWD && ls"
+        return "cd /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc && echo $PWD && dbt run"
 
     @task.bash
     def main3():
