@@ -39,10 +39,11 @@ with dag:
     @task.bash
     def main2():
         return """
-        mkdir -p /opt/airflow/dbt_jobs/bi_proc &&
+        mkdir -p /opt/airflow/dbt_jobs &&
+        cp -f -r /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
-        cp -f /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc/dbt_project.yml /opt/airflow/dbt_jobs/bi_proc &&
-        dbt debug
+        dbt run
+        rm -r /opt/airflow/dbt_jobs/bi_proc
         """
 
     @task.bash
