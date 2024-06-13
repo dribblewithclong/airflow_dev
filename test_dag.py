@@ -36,9 +36,10 @@ with dag:
         print(result1.stdout)
         print(result2.stdout)
 
-    @task
+    @task.bash
     def main2():
-        print('hello cc too')
+        print("echo $PWD")
+        print("dbt debug")
 
     @task
     def main3():
