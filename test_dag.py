@@ -40,7 +40,8 @@ with dag:
     def main2():
         return """
         mkdir -p /opt/airflow/dbt_jobs/bi_proc &&
-        cd /opt/airflow/dbt_jobs/bi_proc && echo $PWD
+        cd /opt/airflow/dbt_jobs/bi_proc &&
+        whoami
         """
 
     @task.bash
