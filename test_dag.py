@@ -89,6 +89,8 @@ with dag:
         return """
         mkdir -p /opt/airflow/dbt_jobs/bi_proc &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
+        touch ~/.dbt/profiles.yml &&
+        ls ~/.dbt &&
         dbt debug
         """
 
