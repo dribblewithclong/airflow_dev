@@ -38,7 +38,7 @@ with dag:
 
     @task.bash
     def main2():
-        return "cd /opt/airflow && echo $PWD"
+        return "cd /opt/airflow && echo $PWD && ls"
 
     @task.bash
     def main3():
