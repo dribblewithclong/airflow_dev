@@ -44,6 +44,7 @@ with dag:
         def create_and_append_yaml(file_path, new_content):
             # Check if the file exists
             if not os.path.exists(file_path):
+                print('haha')
                 # Create an empty file if it doesn't exist
                 with open(file_path, 'w') as file:
                     yaml.dump({}, file)  # Dump an empty dictionary to initialize the file
