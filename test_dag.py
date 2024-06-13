@@ -41,7 +41,7 @@ with dag:
         return """
         mkdir -p /opt/airflow/dbt_jobs/bi_proc &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
-        cp /opt/airflow/dags/dbt_test/bi_proc/dbt_project.yml /opt/airflow/dbt_jobs/bi_proc &&
+        cp /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc/dbt_project.yml /opt/airflow/dbt_jobs/bi_proc &&
         dbt debug
         """
 
