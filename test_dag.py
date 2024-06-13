@@ -50,4 +50,4 @@ with dag:
     def main3():
         return "dbt debug"
     
-    main() >> main2() >> main3()
+    main() >> main2()
