@@ -41,7 +41,7 @@ with dag:
         task_id='dbt_run_task',
         bash_command="""
         mkdir -p /opt/airflow/dbt_jobs &&
-        cp -f -r /opt/airflow/dags/y4a_de_repo/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
+        cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
         dbt run
         rm -r /opt/airflow/dbt_jobs/bi_proc
