@@ -37,28 +37,15 @@ with dag:
         print(result1.stdout)
         print(result2.stdout)
 
-    # @task.bash
-    # def main2():
-    #     return """
-    #     mkdir -p /opt/airflow/dbt_jobs &&
-    #     cp -f -r /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc /opt/airflow/dbt_jobs/ &&
-    #     cd /opt/airflow/dbt_jobs/bi_proc &&
-    #     dbt run
-    #     rm -r /opt/airflow/dbt_jobs/bi_proc
-    #     """
     dbt_run_task = BashOperator(
         task_id='dbt_run_task',
         bash_command="""
         mkdir -p /opt/airflow/dbt_jobs &&
-        cp -f -r /opt/airflow/dags/y4a_de_repo/dbt_test/bi_proc /opt/airflow/dbt_jobs/ &&
+        cp -f -r /opt/airflow/dags/y4a_de_repo/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
         dbt run
         rm -r /opt/airflow/dbt_jobs/bi_proc
         """,
     )
-
-    # @task.bash
-    # def main3():
-    #     return "dbt debug"
     
     main() >> dbt_run_task
