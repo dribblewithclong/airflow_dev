@@ -16,7 +16,7 @@ default_args = {
     "email_on_failure": True,
 }
 dag = DAG(
-    dag_id='2',
+    dag_id='test_dbt_bi',
     description='test DAG',
     schedule_interval=None,
     max_active_runs=1,
