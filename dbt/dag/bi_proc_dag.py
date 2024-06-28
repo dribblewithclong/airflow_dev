@@ -43,7 +43,7 @@ with dag:
         mkdir -p /opt/airflow/dbt_jobs &&
         cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
-        dbt run
+        dbt run --select tag:b2r
         rm -r /opt/airflow/dbt_jobs/bi_proc
         """,
     )
