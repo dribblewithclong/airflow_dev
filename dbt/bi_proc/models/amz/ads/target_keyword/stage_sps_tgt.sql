@@ -39,11 +39,11 @@ select
 	a.unitssoldclicks14d as unitssold14d,
 	a.topofsearchimpressionshare 
 
-from {{ ref('api_sps_tgt') }} a 
-left join {{ ref('api_profile') }} b on a.profile_id  = b.profile_id
-left join {{ ref('analyst_dim_currency') }} c on b.currency_code = c.currency_code and a.report_date::date = c.run_date
+from {{ ref('raw_y4a_dwa_amz_ads_sps_tgt_v3') }} a 
+left join {{ ref('raw_y4a_dwa_amz_ads_prf') }} b on a.profile_id  = b.profile_id
+left join {{ ref('analyst_dim_currency_exchange_rate') }} c on b.currency_code = c.currency_code and a.report_date::date = c.run_date
 
-left join {{ ref('analyst_ads_account_tracking') }} d on 
+left join {{ ref('analyst_list_ads_account_tracking') }} d on 
 	    (case 
 			when b.profile_id  = '3596426524437260' then 'A12X25XU8HRIT'
      	 	when b.profile_id  = '1827820861745261' then 'A1EHMBCIDFM0G1' 

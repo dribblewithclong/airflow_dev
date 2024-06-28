@@ -1,0 +1,23 @@
+
+version: 2
+
+models:
+  - name: stage_avc_brn_run
+    description: "clean data từ bảng y4a_dwc_amz_avc_brn_run. BI note: Page đầu BTR -- count(*) ~ 57k"
+
+  - name: stage_avc_brn_run_pco
+    description: "clean data từ bảng y4a_dwc_amz_avc_brn_run_pco. BI note: Page thứ 3 BTR -- count(*) ~ 111k"
+
+  - name: stage_tb_y4a_amz_avc_diwh_po_dtl
+    description: "Thông tin các PO liên quan từ source PO -- bảng DA: y4a_sop_sell_in.sales_order_avc_di | y4a_sop_sell_in.sales_order_avc_wh -- count(*) ~ 797k"
+
+  - name: raw_y4a_dwc_amz_avc_brn_run_dtl_itm
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - offer_id
+            - asin
+            - country
+
+  - name: stage_b2r_his_st_eta_max_v2
+    description: lag_ trong y4a_analyst.prc_y4a_amz_avc_b2r_y4a_view

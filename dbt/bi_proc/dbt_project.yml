@@ -32,8 +32,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   bi_proc:
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    +materialized: ephemeral
+
+    amz:
+      born_to_run:
+        +tags:
+          - "b2r"
+          - "daily"
 
 vars:
   days_interval: 61
+  born_to_run_days_back: 395
