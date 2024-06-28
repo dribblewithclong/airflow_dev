@@ -37,15 +37,39 @@ with dag:
         print(result1.stdout)
         print(result2.stdout)
 
-    dbt_run_task = BashOperator(
-        task_id='dbt_run_task',
+    dbt_b2r_cate_view = BashOperator(
+        task_id='cate_view',
         bash_command="""
         mkdir -p /opt/airflow/dbt_jobs &&
         cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
-        dbt run --select tag:b2r
+        dbt run --select +main_tb_y4a_amz_avc_b2r_btr_cate
+        dbt run --select +main_tb_y4a_amz_avc_b2r_y4a_view
+        rm -r /opt/airflow/dbt_jobs/bi_proc
+        """,
+    )
+
+    dbt_b2r_promo = BashOperator(
+        task_id='promo',
+        bash_command="""
+        mkdir -p /opt/airflow/dbt_jobs &&
+        cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
+        cd /opt/airflow/dbt_jobs/bi_proc &&
+        dbt run --select +main_tb_b2r_promo
+        rm -r /opt/airflow/dbt_jobs/bi_proc
+        """,
+    )
+
+    dbt_b2r_car_limit = BashOperator(
+        task_id='car_limit',
+        bash_command="""
+        mkdir -p /opt/airflow/dbt_jobs &&
+        cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
+        cd /opt/airflow/dbt_jobs/bi_proc &&
+        dbt run --select +main_test_car_limit
         rm -r /opt/airflow/dbt_jobs/bi_proc
         """,
     )
     
-    main() >> dbt_run_task
+    main() >> dbt_b2r_cate_view
+    main() >> dbt_b2r_promo >> dbt_b2r_car_limit
