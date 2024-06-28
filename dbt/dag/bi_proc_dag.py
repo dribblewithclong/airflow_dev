@@ -44,7 +44,7 @@ with dag:
         cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
         cd /opt/airflow/dbt_jobs/bi_proc &&
         dbt run --select +main_tb_y4a_amz_avc_b2r_btr_cate
-        dbt run --select +main_tb_y4a_amz_avc_b2r_y4a_view
+        dbt run --select main_tb_y4a_amz_avc_b2r_y4a_view
         rm -r /opt/airflow/dbt_jobs/bi_proc
         """,
     )
@@ -71,5 +71,5 @@ with dag:
         """,
     )
     
-    dbt_b2r_cate_view
+    main() >> dbt_b2r_cate_view
     dbt_b2r_promo >> dbt_b2r_car_limit
