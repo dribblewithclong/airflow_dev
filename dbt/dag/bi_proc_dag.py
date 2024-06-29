@@ -71,5 +71,5 @@ with dag:
         """,
     )
     
-    main() >> dbt_b2r_cate_view
+    dbt_b2r_cate_view
     dbt_b2r_promo >> dbt_b2r_car_limit
