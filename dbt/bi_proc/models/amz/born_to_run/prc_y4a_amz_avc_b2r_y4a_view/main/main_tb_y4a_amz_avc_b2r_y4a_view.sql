@@ -1,6 +1,7 @@
 {{
     config(
-        materialized='table',
+        materialized='incremental',
+        unique_key='offer_id',
         partition_by={"field": "submission_date", "data_type": "date"}
     )
 }}

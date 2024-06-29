@@ -40,6 +40,13 @@ models:
           - "b2r"
           - "daily"
 
+        main_tb_y4a_amz_avc_b2r_y4a_view:
+          pre-hook: "TRUNCATE TABLE {{ this }}"
+        main_test_car_limit:
+          pre-hook: "TRUNCATE TABLE {{ this }}"
+        main_tb_b2r_promo:
+          pre-hook: "TRUNCATE TABLE {{ this }}"
+
 vars:
   days_interval: 61
   born_to_run_days_back: 395
