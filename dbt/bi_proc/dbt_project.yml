@@ -39,13 +39,21 @@ models:
         +tags:
           - "b2r"
           - "daily"
+          
+        prc_y4a_amz_avc_b2r_y4a_view:
+          main:
+            main_tb_y4a_amz_avc_b2r_y4a_view:
+              pre-hook: "TRUNCATE TABLE {{ this }}"
+        
+        test_car_limit:
+          main:
+            main_test_car_limit:
+              pre-hook: "TRUNCATE TABLE {{ this }}"
 
-        main_tb_y4a_amz_avc_b2r_y4a_view:
-          pre-hook: "TRUNCATE TABLE {{ this }}"
-        main_test_car_limit:
-          pre-hook: "TRUNCATE TABLE {{ this }}"
-        main_tb_b2r_promo:
-          pre-hook: "TRUNCATE TABLE {{ this }}"
+        b2r_promo:
+          main:
+            main_tb_b2r_promo:
+              pre-hook: "TRUNCATE TABLE {{ this }}"
 
 vars:
   days_interval: 61
