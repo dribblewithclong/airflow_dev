@@ -42,7 +42,7 @@ with dag:
         "include_past": False,
         "include_subdags": False,
         "include_upstream": False,
-        "include_downstream": True,
+        "include_downstream": False,
         "only_failed": False,
         "reset_dag_runs": True,
         "task_ids": [
