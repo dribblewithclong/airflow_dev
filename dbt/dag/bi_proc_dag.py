@@ -55,11 +55,6 @@ with dag:
 
         response = requests.post(url, headers=header, json=payload, auth=auth)
         response.json()
-
-    trigger_bi = PythonOperator(
-        task_id= "trigger_bi_proc",
-        python_callable= trigger_bi_proc
-        )
     
     dbt_b2r_cate_view = BashOperator(
         task_id='cate_view',
@@ -95,4 +90,4 @@ with dag:
         """,
     )
     
-    [dbt_b2r_cate_view, dbt_b2r_promo >> dbt_b2r_car_limit] >> trigger_bi
+    [dbt_b2r_cate_view, dbt_b2r_promo >> dbt_b2r_car_limit] >> trigger_bi_proc()
