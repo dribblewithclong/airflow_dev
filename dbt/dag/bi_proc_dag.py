@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
 
 default_args = {
     "retries": 20,
@@ -27,16 +28,39 @@ dag = DAG(
 
 with dag:
     @task
-    def main():
-        import subprocess
+    def trigger_bi_proc():
+        import requests
 
-        result1 = subprocess.run(["echo $PWD"], shell=True, capture_output=True, text=True)
+        domain='http://172.30.15.30:8090'
+        auth = ('airflow_de_bi', '123456')
+        dag_run_id = 'trigger_by_api_2024-07-01T02:42:33 +0000'
+        dagId = 'dag_PBi_trigger_signal_API'
+        payload = {
+        "dag_run_id": dag_run_id,
+        "dry_run": False,
+        "include_parentdag": False,
+        "include_past": False,
+        "include_subdags": False,
+        "include_upstream": False,
+        "include_downstream": True,
+        "only_failed": False,
+        "reset_dag_runs": True,
+        "task_ids": [
+        "B2R_-_dbt_b2r_bi_de_level_1"
+        ]
+        }
 
-        result2 = subprocess.run(["touch ~/.dbt/profiles.yml"], shell=True, capture_output=True, text=True)
+        url = f"{domain}/api/v1/dags/{dagId}/clearTaskInstances"
+        header = {"Content-Type": "application/json"}
 
-        print(result1.stdout)
-        print(result2.stdout)
+        response = requests.post(url, headers=header, json=payload, auth=auth)
+        response.json()
 
+    trigger_bi = PythonOperator(
+        task_id= "trigger_bi_proc",
+        python_callable= trigger_bi_proc
+        )
+    
     dbt_b2r_cate_view = BashOperator(
         task_id='cate_view',
         bash_command="""
@@ -71,5 +95,4 @@ with dag:
         """,
     )
     
-    dbt_b2r_cate_view
-    dbt_b2r_promo >> dbt_b2r_car_limit
+    [dbt_b2r_cate_view, dbt_b2r_promo >> dbt_b2r_car_limit] >> trigger_bi
