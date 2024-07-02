@@ -75,4 +75,4 @@ with dag:
         """,
     )
     
-    [dbt_b2r_cate_view, dbt_b2r_promo >> dbt_b2r_car_limit] >> trigger_bi_proc()
+    dbt_b2r_cate_view >> dbt_b2r_promo >> dbt_b2r_car_limit >> trigger_bi_proc()
