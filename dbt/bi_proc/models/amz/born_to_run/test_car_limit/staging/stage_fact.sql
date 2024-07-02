@@ -24,5 +24,5 @@ left join {{ ref('analyst_dim_currency_exchange_rate') }} c on a.currency = c.cu
 where submission_date >= '2024-01-01'
 and offer_state = 'Active'
 and status = 'Accepted'
-and (vendor_responsible_quantity <>0 or vendor_responsible_quantity is not null)
+and (vendor_responsible_quantity <>0 and vendor_responsible_quantity is not null)
 group by 1,2,3,4
