@@ -8,6 +8,8 @@ from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
+import airflow_function
+
 default_args = {
     "retries": 20,
     "retry_delay": timedelta(minutes=4),
@@ -29,32 +31,13 @@ dag = DAG(
 with dag:
     @task
     def trigger_bi_proc():
-        import requests
-
         domain='http://172.30.15.30:8090'
-        auth = ('airflow_de_bi', '123456')
-        dag_run_id = 'trigger_by_api_2024-07-01T02:42:33 +0000'
+        airflow_username = 'airflow_de_bi'
+        airflow_password = '123456'
+        a = airflow_function.Airflow(domain, airflow_username, airflow_password)
         dagId = 'dag_PBi_trigger_signal_API'
-        payload = {
-        "dag_run_id": dag_run_id,
-        "dry_run": False,
-        "include_parentdag": False,
-        "include_past": False,
-        "include_subdags": False,
-        "include_upstream": False,
-        "include_downstream": False,
-        "only_failed": False,
-        "reset_dag_runs": True,
-        "task_ids": [
-        "B2R_-_dbt_b2r_bi_de_level_1"
-        ]
-        }
-
-        url = f"{domain}/api/v1/dags/{dagId}/clearTaskInstances"
-        header = {"Content-Type": "application/json"}
-
-        response = requests.post(url, headers=header, json=payload, auth=auth)
-        response.json()
+        taskId = 'B2R_-_dbt_b2r_bi_de_level_1'
+        a.trigger_task(dagId, taskId)
     
     dbt_b2r_cate_view = BashOperator(
         task_id='cate_view',
