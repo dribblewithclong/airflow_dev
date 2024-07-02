@@ -8,6 +8,8 @@ from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
+import sys, os 
+sys.path.append(os.path.dirname(__file__))
 import airflow_function
 
 default_args = {
