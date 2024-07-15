@@ -27,9 +27,11 @@ select
 	sales,
 	purchases,
 
-	topofsearchimpressionshare
- 
-{# from y4a_temp.f_y4a_dwa_amz_ads_spb_tgt_v3 #}
+	topofsearchimpressionshare,
+	salespromoted,
+	purchasespromoted,
+	run_date
+
 from y4a_cdm.y4a_dwa_amz_ads_spb_tgt_v3
-where report_date >= current_date - interval '{{ var('days_interval') }}' day
+where report_date >= current_date - interval '{{ var('days_target_keyword_interval') }}' day
 and report_date <= current_date

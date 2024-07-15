@@ -30,11 +30,17 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  bi_proc:
+    bi_proc:
     # Config indicated by + and applies to all files under models/example/
     +materialized: ephemeral
 
     amz:
+      ads:
+        target_keyword:
+          +tags:
+            - "target_keyword"
+            - "yams"
+            - "daily"
       born_to_run:
         +tags:
           - "b2r"
