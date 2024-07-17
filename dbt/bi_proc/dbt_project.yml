@@ -36,11 +36,15 @@ models:
 
     amz:
       ads:
-        target_keyword:
-          +tags:
-            - "target_keyword"
+        +tags:
             - "yams"
             - "daily"
+        target_keyword:
+          +tags:
+            - "targeting"
+        placement_yams:
+          +tags:
+            - "placement"
       born_to_run:
         +tags:
           - "b2r"
