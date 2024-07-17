@@ -39,7 +39,7 @@ with dag:
     )
 
     placement = BashOperator(
-        task_id='yams_task',
+        task_id='placement',
         bash_command="""
         mkdir -p /opt/airflow/dbt_jobs &&
         cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
