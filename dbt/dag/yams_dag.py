@@ -38,4 +38,15 @@ with dag:
         """,
     )
 
-    yams_task
+    placement = BashOperator(
+        task_id='yams_task',
+        bash_command="""
+        mkdir -p /opt/airflow/dbt_jobs &&
+        cp -f -r /opt/airflow/dags/airflow_iykyk/dbt/bi_proc /opt/airflow/dbt_jobs/ &&
+        cd /opt/airflow/dbt_jobs/bi_proc &&
+        dbt run --select tb_y4a_amz_ads_placement_yams
+        rm -r /opt/airflow/dbt_jobs/bi_proc
+        """,
+    )
+
+    yams_task >> placement
