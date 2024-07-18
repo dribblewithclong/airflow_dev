@@ -42,6 +42,11 @@ models:
         target_keyword:
           +tags:
             - "targeting"
+
+        adid_yams:
+          +tags:
+            - "adid"
+
         placement_yams:
           +tags:
             - "placement"
