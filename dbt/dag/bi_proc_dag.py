@@ -38,7 +38,7 @@ with dag:
         airflow_password = '123456'
         a = airflow_function.Airflow(domain, airflow_username, airflow_password)
         dagId = 'dag_PBi_trigger_signal_API'
-        taskId = 'B2R_-_dbt_b2r_bi_de_level_1'
+        taskId = 'B2R_-_dbt_b2r_bi_de_level_101'
         a.trigger_task(dagId, taskId)
     
     dbt_b2r_cate_view = BashOperator(
